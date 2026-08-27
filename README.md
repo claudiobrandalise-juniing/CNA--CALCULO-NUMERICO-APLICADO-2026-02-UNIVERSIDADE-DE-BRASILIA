@@ -13,8 +13,8 @@ Repositório de práticas computacionais da disciplina de Cálculo Numérico Apl
 |---|---|
 | **Instituição** | Universidade de Brasília (UnB) |
 | **Unidade** | Faculdade de Tecnologia (FT) |
-| **Departamento** | Departamento de Engenharia Mecânica (ENM) |
-| **Disciplina** | Cálculo Numérico Aplicado — *[código da disciplina]* |
+| **Departamento** | Departamento de Engenharia Mecânica|
+| **Disciplina** | Cálculo Numérico Aplicado — ENM0227 |
 | **Semestre** | 2026/2 |
 | **Docente** | Prof. Rafael Gabler Gontijo |
 | **Discente** | Claudio Junior Franco Brandalise |
