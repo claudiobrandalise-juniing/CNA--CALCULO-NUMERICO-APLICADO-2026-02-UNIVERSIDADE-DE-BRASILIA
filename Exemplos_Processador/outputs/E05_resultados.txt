@@ -1,0 +1,26 @@
+
+==============================================================================
+E05 - Pico de temperatura no die (condução transiente 1D implícita)
+==============================================================================
+alfa = 7.914e-05 m2/s, Bi = h L/k = 0.308, tau ~ rho cp L/h = 26.3 ms, L^2/alfa = 8.09 ms
+Fo da malha com dt = 0.00025 s: 49.5  (o implícito aceita Fo >> 1/2)
+
+a) Validação: 95 W constantes por 0,4 s
+---------------------------------------
+Analítico: T(0) = 77.2543 °C, T(L) = 73.1944 °C
+Numérico : T(0) = 77.2543 °C, T(L) = 73.1944 °C;  max|erro| = 1.76e-05 °C
+
+b) Turbo: 30 W -> 95 W (0,1 s) -> 30 W (0,15 s)
+-----------------------------------------------
+Face ativa: 65.45 °C (30 W) -> máx 76.90 °C no fim do turbo (permanente de 95 W seria 77.25 °C)
+Tempo para 63,2 % da subida: 25.5 ms (estimativa tau = 26.3 ms)
+Diferença face ativa - face da pasta no pico: 4.01 K (condução no silício) x 12.89 K (pasta)
+
+c) Explícito x implícito (primeiros 10 ms do turbo)
+---------------------------------------------------
+  esquema       dt [s]  passos  T face em 10 ms [°C]  tempo de CPU [s]
+---------  -----------  ------  --------------------  ----------------
+explícito  2.25708e-06    4431               69.5087          0.311866
+explícito  3.00944e-06    3323              INSTÁVEL          0.357903
+implícito      0.00025      40               69.4969        0.00607466
+Limite do explícito: dt <= dx^2/(2 alfa (1 + h dx/k)) = 2.51e-06 s

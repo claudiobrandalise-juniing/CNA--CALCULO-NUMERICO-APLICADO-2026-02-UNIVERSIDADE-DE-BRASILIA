@@ -1,0 +1,36 @@
+
+==============================================================================
+E08 - Constantes de tempo da rede RC (polinômio característico)
+==============================================================================
+
+a) Polinômio característico det(lambda C + G) e Bairstow
+--------------------------------------------------------
+P(lambda) = 3060 l^3 + 127909.29 l^2 + 76514.286 l^1 + 571.42857 l^0
+fator  iteracoes              r                s           raiz_1         raiz_2
+-----  ---------  -------------  ---------------  ---------------  -------------
+    1          4  -0.6068947735  -0.004533269766  -0.007563884743  -0.5993308888
+modo   lambda [1/s]  tau = -1/lambda [s]  resíduo relativo
+----  -------------  -------------------  ----------------
+   1     -41.193525           0.02427566     2.3518515e-17
+   2    -0.59933089            1.6685274     1.4664184e-17
+   3  -0.0075638847             132.2072     7.8574523e-16
+resíduo relativo = |P(lambda)| / soma|a_i lambda^i| (independe da escala de lambda)
+Todas reais e negativas: rede RC (G simétrica, C > 0) não oscila, só decai.
+
+b) Conferências
+---------------
+Müller partindo de (-0.001, -0.005, -0.01): lambda = -0.0075638847 em 3 iterações
+Müller partindo de (-0.5, -1.0, -1.5): lambda = -0.5993308888 em 5 iterações
+Müller partindo de (-30.0, -50.0, -60.0): lambda = -41.1935253946 em 6 iterações
+Vieta: soma das raízes = -41.80042017;  -a2/a3 = -41.80042017;  -traço(C^-1 G) = -41.80042017
+Vieta: produto das raízes = -0.18674136;  -a0/a3 = -0.18674136
+
+c) Resfriamento simulado por RK4
+--------------------------------
+Inclinação de ln(theta_dissipador) entre 600 s e 900 s = -0.00756388 1/s
+lambda_lento (Bairstow)                              = -0.00756388 1/s
+
+d) Rigidez (stiffness)
+----------------------
+tau_lento / tau_rápido = 5446. O RK4 (explícito) precisa de h < 2.785/|lambda_rápido| = 0.068 s por estabilidade, embora a dinâmica de interesse
+dure ~661 s: são ~9777 passos. Problemas assim pedem métodos implícitos (como no PPC 3).

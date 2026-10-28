@@ -1,0 +1,27 @@
+
+==============================================================================
+E04 - Transiente do processador: modelo RC de 2 nós (RK4)
+==============================================================================
+
+a) Validação: P = 95 W constante, partindo de T = T_inf
+-------------------------------------------------------
+Autovalores: l1 = -0.007565 1/s (tau = 132.2 s), l2 = -0.205709 1/s (tau = 4.86 s)
+Regime permanente: T1 = 101.750 °C, T2 = 73.250 °C
+Erro máximo RK4 x analítica (h = 0.5 s): 9.66e-06 °C
+
+c) Efeito do passo h (até t = 300 s)
+------------------------------------
+h [s]  h |l_rápido|  erro máx [°C]  situação
+-----  ------------  -------------  --------
+    8         1.646          2.025   estável
+    4        0.8228        0.07129   estável
+    2        0.4114       0.003147   estável
+    1        0.2057      0.0001684   estável
+   13         2.674          20.06   estável
+   14          2.88          507.4  INSTÁVEL
+Limite de estabilidade do RK4 (autovalor real): h |l| < 2.785 -> h < 13.5 s. Quem limita o passo é o nó RÁPIDO (chip).
+
+b) Perfil de carga 15 W -> 95 W -> 15 W
+---------------------------------------
+throttling DESLIGADO: T1 máx = 100.04 °C; atinge 95.0 °C em t = 218.0 s
+throttling LIGADO   : T1 máx = 95.00 °C; atinge 95.0 °C em t = 218.0 s
