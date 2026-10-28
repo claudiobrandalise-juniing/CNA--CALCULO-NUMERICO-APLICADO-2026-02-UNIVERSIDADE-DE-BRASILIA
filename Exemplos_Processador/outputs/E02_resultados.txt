@@ -1,0 +1,53 @@
+
+==============================================================================
+E02 - Rede de resistências térmicas (sistemas lineares)
+==============================================================================
+G [W/K] =
+  [  5.5  -1.5     0     0    -4     0 ]
+  [ -1.5     7  -1.5     0    -4     0 ]
+  [    0  -1.5     7  -1.5    -4     0 ]
+  [    0     0  -1.5   5.5    -4     0 ]
+  [   -4    -4    -4    -4    28   -12 ]
+  [    0     0     0     0   -12  14.5 ]
+b = [30.  25.  20.  15.   0.  87.5] [W]
+G simétrica? True   diagonalmente dominante? False
+
+a) Temperaturas [°C]
+--------------------
+        nó  Gauss+pivô          LU    Cholesky  Gauss-Seidel
+----------  ----------  ----------  ----------  ------------
+  núcleo 1  85.6418539  85.6418539  85.6418539    85.6418539
+  núcleo 2  84.6867978  84.6867978  84.6867978    84.6867978
+  núcleo 3  83.5632022  83.5632022  83.5632022    83.5632022
+  núcleo 4  82.6081461  82.6081461  82.6081461    82.6081461
+       IHS        78.5        78.5        78.5          78.5
+dissipador          71          71          71            71
+Gauss-Seidel: 373 iterações; maior diferença entre métodos = 1.4e-09 °C
+||G T - b||_inf = 5.7e-14 W
+Obs.: G não é ESTRITAMENTE dominante (linha do IHS: 28 = 4*4 + 12), mas é
+simétrica positiva definida, e isso também garante a convergência de Gauss-Seidel.
+Com sobre-relaxação lambda = 1.5: 115 iterações
+Com sobre-relaxação lambda = 1.8: 122 iterações
+
+b) Conservação de energia
+-------------------------
+Calor do dissipador para o ar = 90.000000 W;  soma das potências = 90.000000 W
+Núcleo mais quente: núcleo 1 a 85.64 °C
+
+c) Z = G^-1 [K/W]: Z_ij = aumento de T_i por 1 W no nó j
+--------------------------------------------------------
+Z =
+  [ 0.67705  0.52697  0.49327  0.48604  0.48333      0.4 ]
+  [ 0.52697  0.64335  0.51975  0.49327  0.48333      0.4 ]
+  [ 0.49327  0.51975  0.64335  0.52697  0.48333      0.4 ]
+  [ 0.48604  0.49327  0.52697  0.67705  0.48333      0.4 ]
+  [ 0.48333  0.48333  0.48333  0.48333  0.48333      0.4 ]
+  [     0.4      0.4      0.4      0.4      0.4      0.4 ]
+        nó  aumento [K]  nova T [°C]
+----------  -----------  -----------
+  núcleo 1      5.26973      90.9116
+  núcleo 2      6.43345      91.1203
+  núcleo 3       5.1975      88.7607
+  núcleo 4      4.93265      87.5408
+       IHS      4.83333      83.3333
+dissipador            4           75

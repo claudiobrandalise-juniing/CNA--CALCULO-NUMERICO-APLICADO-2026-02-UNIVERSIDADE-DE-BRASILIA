@@ -1,0 +1,122 @@
+
+==============================================================================
+AP06 - Condicionamento e pivoteamento parcial (estrutura de barras)
+==============================================================================
+
+Parte 1 - Sistema 2x2: determinante e sensibilidade às cargas
+-------------------------------------------------------------
+            config.  |det| = |sin(t1-t2)|   dF1 (py)    dF2 (py)    dF1 (px)    dF2 (px)  cond_inf
+-------------------  --------------------  ---------  ----------  ----------  ----------  --------
+      A (afastadas)              0.766044  -0.011831  0.00337864  0.00551689  -0.0126093   2.40883
+       B (próximas)            0.00174533   -1.00478    0.994931     5.64079    -5.64254   1308.72
+C (quase paralelas)           0.000174533      -0.02        0.01     57.2958    -57.2958   11463.2
+(perturbação aplicada: +0.01 N em p_y e, separadamente, em p_x)
+
+Determinante x escala: mesma matriz C escrita em mN (x1000)
+-----------------------------------------------------------
+  unidade  N: det = -1.7453e-04,  cond_inf = 1.1463e+04
+  unidade mN: det = -1.7453e+02,  cond_inf = 1.1463e+04
+
+Partes 2-4 - Sistema 5x5, configuração A (afastadas)
+----------------------------------------------------
+Eliminação INGÊNUA:
+  F calculado = [100, -80, 20, 35, 15] N
+  ||F - F_ref||_inf = 4.263e-14 N,  ||r||_inf = ||A F - b||_inf = 2.842e-14
+Eliminação com PIVOTEAMENTO PARCIAL (etapas):
+  Etapa k = 1 (linha pivô escolhida p = 2), pivô a_kk = 0.965926:
+   [      0.965926       0.422618              0              0              0 |       62.7831 ]
+   [             0       0.793068              1              0              0 |      -43.4454 ]
+   [             0              0             -1       0.707107              0 |       4.74874 ]
+   [             0              0              0      -0.707107             -1 |      -39.7487 ]
+   [             0              0              0              0              1 |            15 ]
+  Etapa k = 2 (linha pivô escolhida p = 2), pivô a_kk = 0.793068:
+   [      0.965926       0.422618              0              0              0 |       62.7831 ]
+   [             0       0.793068              1              0              0 |      -43.4454 ]
+   [             0              0             -1       0.707107              0 |       4.74874 ]
+   [             0              0              0      -0.707107             -1 |      -39.7487 ]
+   [             0              0              0              0              1 |            15 ]
+  Etapa k = 3 (linha pivô escolhida p = 3), pivô a_kk = -1:
+   [      0.965926       0.422618              0              0              0 |       62.7831 ]
+   [             0       0.793068              1              0              0 |      -43.4454 ]
+   [             0              0             -1       0.707107              0 |       4.74874 ]
+   [             0              0              0      -0.707107             -1 |      -39.7487 ]
+   [             0              0              0              0              1 |            15 ]
+  Etapa k = 4 (linha pivô escolhida p = 4), pivô a_kk = -0.707107:
+   [      0.965926       0.422618              0              0              0 |       62.7831 ]
+   [             0       0.793068              1              0              0 |      -43.4454 ]
+   [             0              0             -1       0.707107              0 |       4.74874 ]
+   [             0              0              0      -0.707107             -1 |      -39.7487 ]
+   [             0              0              0              0              1 |            15 ]
+  F calculado = [100, -80, 20, 35, 15] N
+  trocas de linha (k, p): [(1, 2)]
+  ||F - F_ref||_inf = 7.105e-15 N,  ||r||_inf = ||A F - b||_inf = 1.421e-14
+
+Partes 2-4 - Sistema 5x5, configuração C (quase paralelas)
+----------------------------------------------------------
+Eliminação INGÊNUA:
+  F calculado = [100, -80, 20, 35, 15] N
+  ||F - F_ref||_inf = 6.277e-11 N,  ||r||_inf = ||A F - b||_inf = 4.576e-12
+Eliminação com PIVOTEAMENTO PARCIAL (etapas):
+  Etapa k = 1 (linha pivô escolhida p = 2), pivô a_kk = 1:
+   [             1              1              0              0              0 |            20 ]
+   [             0    0.000174533              1              0              0 |        19.986 ]
+   [             0              0             -1       0.707107              0 |       4.74874 ]
+   [             0              0              0      -0.707107             -1 |      -39.7487 ]
+   [             0              0              0              0              1 |            15 ]
+  Etapa k = 2 (linha pivô escolhida p = 2), pivô a_kk = 0.000174533:
+   [             1              1              0              0              0 |            20 ]
+   [             0    0.000174533              1              0              0 |        19.986 ]
+   [             0              0             -1       0.707107              0 |       4.74874 ]
+   [             0              0              0      -0.707107             -1 |      -39.7487 ]
+   [             0              0              0              0              1 |            15 ]
+  Etapa k = 3 (linha pivô escolhida p = 3), pivô a_kk = -1:
+   [             1              1              0              0              0 |            20 ]
+   [             0    0.000174533              1              0              0 |        19.986 ]
+   [             0              0             -1       0.707107              0 |       4.74874 ]
+   [             0              0              0      -0.707107             -1 |      -39.7487 ]
+   [             0              0              0              0              1 |            15 ]
+  Etapa k = 4 (linha pivô escolhida p = 4), pivô a_kk = -0.707107:
+   [             1              1              0              0              0 |            20 ]
+   [             0    0.000174533              1              0              0 |        19.986 ]
+   [             0              0             -1       0.707107              0 |       4.74874 ]
+   [             0              0              0      -0.707107             -1 |      -39.7487 ]
+   [             0              0              0              0              1 |            15 ]
+  F calculado = [100, -80, 20, 35, 15] N
+  trocas de linha (k, p): [(1, 2)]
+  ||F - F_ref||_inf = 5.151e-11 N,  ||r||_inf = ||A F - b||_inf = 3.553e-15
+
+Item 7 - Configuração C com aritmética de 4 algarismos significativos
+---------------------------------------------------------------------
+Ingênua (4 algarismos):
+  F calculado = [114.6, -100, 20, 35, 15] N
+  ||F - F_ref||_inf = 2.000e+01 N,  ||r||_inf = ||A F - b||_inf = 5.400e+00
+Pivoteamento (4 algarismos):
+  F calculado = [77.27, -57.27, 20, 35, 15] N
+  trocas de linha (k, p): [(1, 2)]
+  ||F - F_ref||_inf = 2.273e+01 N,  ||r||_inf = ||A F - b||_inf = 3.967e-03
+
+Efeito do número de algarismos (configuração C):
+algarismos        método  ||F - F_ref||_inf [N]  ||r||_inf
+----------  ------------  ---------------------  ---------
+         4       ingênua                     20        5.4
+         4  pivoteamento                  22.73   0.003967
+         6       ingênua                  0.268      0.268
+         6  pivoteamento                 0.2141  9.999e-05
+         8       ingênua               0.001676   0.001679
+         8  pivoteamento                 0.0021      1e-06
+        10       ingênua              1.393e-05  1.394e-05
+        10  pivoteamento              2.379e-05  4.152e-09
+
+Item 8 - Sensibilidade do 5x5 (+0.01 N em b_2 e, como complemento, em b_1)
+--------------------------------------------------------------------------
+            config.  perturbado  ||db||_inf  ||dF||_inf  amplificação  cond_inf(A)
+-------------------  ----------  ----------  ----------  ------------  -----------
+      A (afastadas)         b_2        0.01    0.011831        1.1831      11.6518
+      A (afastadas)         b_1        0.01   0.0126093       1.26093      11.6518
+C (quase paralelas)         b_2        0.01        0.02             2      45840.6
+C (quase paralelas)         b_1        0.01     57.2958       5729.58      45840.6
+
+Item 9 - FLOPs para n = 5 (configuração C)
+------------------------------------------
+        ingênua: 65 mult/div + 50 soma/sub = 115 FLOPs
+   pivoteamento: 65 mult/div + 50 soma/sub = 115 FLOPs

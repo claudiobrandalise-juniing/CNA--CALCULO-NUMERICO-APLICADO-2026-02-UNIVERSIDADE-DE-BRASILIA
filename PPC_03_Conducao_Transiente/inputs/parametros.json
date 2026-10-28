@@ -1,0 +1,26 @@
+{
+  "descricao": "PPC 3 - condução transiente 1D em placa de combustível nuclear (meia-espessura L, simetria em x = 0, convecção em x = L).",
+  "validacao_adimensional": {
+    "Bi": 1.0,
+    "n_termos_serie": 200,
+    "Fo_comparacao": [0.05, 0.1, 0.2, 0.5, 1.0],
+    "Fo_final": 1.0,
+    "n_nos_escolhido": 41,
+    "dFo_escolhido": 0.0005,
+    "n_nos_estudo": [6, 11, 21, 41, 81],
+    "dFo_estudo": [0.02, 0.01, 0.005, 0.0025, 0.00125]
+  },
+  "combustivel": {
+    "referencia": "UO2 em placa; valores típicos de reator PWR (Todreas e Kazimi; Incropera)",
+    "meia_espessura_m": 0.004,
+    "k_W_mK": 3.0,
+    "rho_kg_m3": 10970.0,
+    "cp_J_kgK": 300.0,
+    "h_W_m2K": 30000.0,
+    "T_fluido_K": 573.15,
+    "T_inicial_K": 573.15,
+    "q_geracao_W_m3": 3.0e8,
+    "tempo_final_s": 120.0,
+    "q_limite_teste_W_m3": 1.0e-3
+  }
+}

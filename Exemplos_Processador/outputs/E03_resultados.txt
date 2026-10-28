@@ -1,0 +1,26 @@
+
+==============================================================================
+E03 - Mapa térmico 2D do spreader (Gauss-Seidel/SOR com geração)
+==============================================================================
+Malha 41 x 41 nós (dx = 1.0 mm), 1521 incógnitas; potência total = 90.0 W
+lambda ótimo teórico do SOR (Laplace, malha quadrada) = 2/(1+sin(pi/N)) = 1.854
+
+b) Iterações x relaxação
+------------------------
+lambda  iterações  T máx [°C]      max|r_ij|
+------  ---------  ----------  -------------
+     1       1840   77.309889  1.9891569e-06
+   1.5        667   77.309995  6.6467559e-07
+  1.85        132   77.310042   1.970364e-07
+
+a) Ponto mais quente
+--------------------
+T_max = 77.310 °C em x = 18 mm, y = 22 mm (dentro do núcleo de 30 W)
+   núcleo de   30 W: T média = 75.19 °C, T máx = 77.31 °C
+   núcleo de   25 W: T média = 74.40 °C, T máx = 76.90 °C
+   núcleo de   20 W: T média = 73.61 °C, T máx = 76.41 °C
+   núcleo de   15 W: T média = 72.81 °C, T máx = 76.05 °C
+
+c) Conservação de energia
+-------------------------
+Calor que sai pelas bordas = 89.999924 W  (gerado = 90.000000 W)

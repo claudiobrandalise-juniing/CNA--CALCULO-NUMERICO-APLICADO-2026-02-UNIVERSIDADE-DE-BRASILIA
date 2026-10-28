@@ -1,0 +1,32 @@
+
+==============================================================================
+E07 - Velocidade ótima da ventoinha (otimização 1D)
+==============================================================================
+
+Exploração da função objetivo
+-----------------------------
+v [m/s]   Tj [°C]  P_fan [W]  P_chip [W]     E [W]
+-------  --------  ---------  ----------  --------
+    1.5  118.3439    0.50625    109.2308  109.7371
+      2  102.7362        1.2    98.71184  99.91184
+    2.5  94.90624    2.34375    94.54995   96.8937
+      3   89.8527       4.05    92.18994  96.23994
+    3.5  86.24211    6.43125    90.64405   97.0753
+      4  83.50409        9.6    89.54397  99.14397
+      5  79.58501      18.75    88.07058  106.8206
+      6  76.88614       32.4    87.12104   119.521
+
+a) Ótimo sem restrição
+----------------------
+                 método  v ótima [m/s]  E mín [W]    Tj [°C]  iterações  avaliações de E
+-----------------------  -------------  ---------  ---------  ---------  ---------------
+            razão áurea      2.9453396  96.231104  90.320377         32               34
+interpolação quadrática      2.9453399  96.231104  90.320374         32               35
+Interpolação quadrática: o ponto central x2 já estava a menos de 1e-06 m/s do ótimo na iteração 15, mas o critério x3 - x1 < tol só foi atingido depois de 16 passos áureos de proteção (os extremos encolhem devagar). Perto do mínimo, E(v) varia menos que o ruído do Newton interno e a parábola perde precisão.
+
+b) Restrição Tj <= 85.0 °C
+--------------------------
+Velocidade mínima para Tj = 85.0 °C: v = 3.71123 m/s (31 iterações de bisseção)
+O ótimo irrestrito (v = 2.9453 m/s) daria Tj = 90.32 °C > 85.0 °C -> restrição ATIVA
+Ótimo restrito: v = 3.7112 m/s, E = 97.8049 W (+1.574 W em relação ao irrestrito)
+Abaixo de v ~ 1.5 m/s não há regime permanente (fuga térmica, ver E06).

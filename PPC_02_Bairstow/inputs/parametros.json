@@ -1,0 +1,22 @@
+{
+  "descricao": "Parâmetros do PPC 2 (método de Bairstow). Raízes complexas no formato [parte real, parte imaginária].",
+  "validacao": {
+    "raizes": [[-3, 0], [-1, 0], [2, 0], [4, 0], [5, 0], [1, 2], [1, -2]],
+    "r0": -1.0,
+    "s0": -1.0
+  },
+  "tol": 1e-10,
+  "max_iter": 200,
+  "chutes_convergencia": [[-1, -1], [0.5, 0.5], [2, -3], [-3, 3], [1, 1], [0, 0], [3, -3], [-2.5, -2.5]],
+  "sistema_apc2": {
+    "massas_kg": [2.0, 1.5, 1.0],
+    "rigidezes_N_m": [800.0, 600.0, 400.0],
+    "amortecimentos_Ns_m": [4.0, 3.0, 2.0]
+  },
+  "polinomio_apc2_crescente": [192000000.0, 2880000.0, 2374400.0, 23624.0, 5359.0, 26.5, 3.0],
+  "omega_ref_rad_s": 20.0,
+  "fractal": {
+    "r_min": -3.0, "r_max": 3.0, "s_min": -3.0, "s_max": 3.0,
+    "resolucao": 500, "tol": 1e-8, "max_iter": 100
+  }
+}
